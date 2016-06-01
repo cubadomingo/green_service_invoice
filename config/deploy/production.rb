@@ -1,0 +1,1 @@
+server '3rdgenrepairs.com', user: 'cubadomingo', roles: %w{web app}
