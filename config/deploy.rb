@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:cubadomingo/third_gen.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/myapp/third_gen'
+set :deploy_to, '/var/www/myapp/'
 
 # If the environment differs from the stage name
 set :rails_env, 'production'
