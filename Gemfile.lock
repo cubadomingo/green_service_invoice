@@ -170,9 +170,10 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capistrano (~> 3.1)
+  capistrano
+  capistrano-bundler
   capistrano-passenger
-  capistrano-rails (~> 1.1)
+  capistrano-rails
   capistrano-rvm
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)

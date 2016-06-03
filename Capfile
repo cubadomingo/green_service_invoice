@@ -16,8 +16,8 @@ require "capistrano/rails"
 #   https://github.com/capistrano/rails
 #   https://github.com/capistrano/passenger
 #
- require 'capistrano/rvm'
- require 'capistrano/passenger'
+require 'capistrano/rvm'
+require 'capistrano/passenger'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 # require 'capistrano/bundler'
