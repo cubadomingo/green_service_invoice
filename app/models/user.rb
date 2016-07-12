@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: admin_users
+# Table name: users
 #
 #  id                     :integer          not null, primary key
 #  email                  :string           default(""), not null
@@ -17,9 +17,10 @@
 #  updated_at             :datetime         not null
 #
 
-class AdminUser < ActiveRecord::Base
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+ has_one :user_information
 end
