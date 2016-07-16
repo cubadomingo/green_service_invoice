@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712232309) do
+ActiveRecord::Schema.define(version: 20160716043635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,28 +67,74 @@ ActiveRecord::Schema.define(version: 20160712232309) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "appliance_parts", force: :cascade do |t|
+    t.integer  "appliance_id"
+    t.integer  "part_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "part_quantity"
+    t.integer  "invoice_id"
+  end
+
+  add_index "appliance_parts", ["appliance_id"], name: "index_appliance_parts_on_appliance_id", using: :btree
+  add_index "appliance_parts", ["invoice_id"], name: "index_appliance_parts_on_invoice_id", using: :btree
+  add_index "appliance_parts", ["part_id"], name: "index_appliance_parts_on_part_id", using: :btree
+
+  create_table "appliances", force: :cascade do |t|
+    t.string   "appliance_brand"
+    t.string   "appliance_type"
+    t.string   "appliance_model"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "phone_number", limit: 8
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "invoices", force: :cascade do |t|
-    t.text     "description"
-    t.integer  "labor"
-    t.integer  "tax"
-    t.integer  "total"
+    t.string   "address_line"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "apt"
+    t.text     "service_description"
+    t.date     "date"
+    t.float    "balance_amount"
+    t.float    "tax"
+    t.float    "labor_price"
+    t.float    "total_price"
+    t.float    "deposit_amount"
+    t.integer  "warranty"
+    t.boolean  "invoice_status"
+    t.float    "total_parts_price"
+    t.string   "payment_type"
+    t.integer  "last_4_digits_card"
+    t.integer  "check_number"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "customer_id"
+    t.integer  "technician_id"
+  end
+
+  add_index "invoices", ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
+  add_index "invoices", ["technician_id"], name: "index_invoices_on_technician_id", using: :btree
+
+  create_table "parts", force: :cascade do |t|
+    t.string   "part_number"
+    t.decimal  "part_price"
+    t.string   "part_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "user_informations", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "prefix"
-    t.string   "suffix"
-    t.string   "address"
-    t.string   "apt"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip_code"
-    t.string   "phone_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "technicians", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,4 +155,7 @@ ActiveRecord::Schema.define(version: 20160712232309) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "appliance_parts", "invoices"
+  add_foreign_key "invoices", "customers"
+  add_foreign_key "invoices", "technicians"
 end
