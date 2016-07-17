@@ -11,43 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716043635) do
+ActiveRecord::Schema.define(version: 20160717024751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -67,27 +34,6 @@ ActiveRecord::Schema.define(version: 20160716043635) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "appliance_parts", force: :cascade do |t|
-    t.integer  "appliance_id"
-    t.integer  "part_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "part_quantity"
-    t.integer  "invoice_id"
-  end
-
-  add_index "appliance_parts", ["appliance_id"], name: "index_appliance_parts_on_appliance_id", using: :btree
-  add_index "appliance_parts", ["invoice_id"], name: "index_appliance_parts_on_invoice_id", using: :btree
-  add_index "appliance_parts", ["part_id"], name: "index_appliance_parts_on_part_id", using: :btree
-
-  create_table "appliances", force: :cascade do |t|
-    t.string   "appliance_brand"
-    t.string   "appliance_type"
-    t.string   "appliance_model"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.integer  "phone_number", limit: 8
@@ -103,14 +49,12 @@ ActiveRecord::Schema.define(version: 20160716043635) do
     t.string   "apt"
     t.text     "service_description"
     t.date     "date"
-    t.float    "balance_amount"
-    t.float    "tax"
-    t.float    "labor_price"
-    t.float    "total_price"
-    t.float    "deposit_amount"
+    t.decimal  "balance_amount"
+    t.decimal  "labor_price"
+    t.decimal  "total_price"
+    t.decimal  "deposit_amount"
     t.integer  "warranty"
     t.boolean  "invoice_status"
-    t.float    "total_parts_price"
     t.string   "payment_type"
     t.integer  "last_4_digits_card"
     t.integer  "check_number"
@@ -118,17 +62,34 @@ ActiveRecord::Schema.define(version: 20160716043635) do
     t.datetime "updated_at",          null: false
     t.integer  "customer_id"
     t.integer  "technician_id"
+    t.string   "appliance_brand"
+    t.string   "appliance_type"
+    t.string   "appliance_model"
   end
 
   add_index "invoices", ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
   add_index "invoices", ["technician_id"], name: "index_invoices_on_technician_id", using: :btree
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "part_id"
+    t.integer  "invoice_id"
+    t.integer  "quantity"
+    t.decimal  "parts_amount"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "orders", ["invoice_id"], name: "index_orders_on_invoice_id", using: :btree
+  add_index "orders", ["part_id"], name: "index_orders_on_part_id", using: :btree
+
   create_table "parts", force: :cascade do |t|
     t.string   "part_number"
-    t.decimal  "part_price"
-    t.string   "part_name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.decimal  "retail_price"
+    t.integer  "stock_amount"
+    t.decimal  "wholesale_price"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "name"
   end
 
   create_table "technicians", force: :cascade do |t|
@@ -155,7 +116,6 @@ ActiveRecord::Schema.define(version: 20160716043635) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "appliance_parts", "invoices"
   add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "technicians"
 end
