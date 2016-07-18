@@ -34,7 +34,13 @@ Coming Soon, I promise!
 * Rails Framework: **RSpec**, **Capybara**
 * Tools: **Shoulda Matchers**, **factory_girl**
 
+##Database Schema
+
+![Database Schema](http://i.imgur.com/S216dRd.png)
+
+I have the database schema attached for any folks that are interested. If you completely disapprove of the schema and have any suggestions for improvement, please don't hesitate to send me an email or message! :)
+
 
 ## Contributing
 
-If this project interest you and you would like to contribute, please do so by all means. Wether you're still new or very well vested in software development, I can appreciate all the help I get. You can also [shoot me an email](mailto:me@devinosor.io) if you have any questions on the application.
+If this project interest you and you would like to contribute, please do so by all means. Whether you're still new or very well vested in software development, I can appreciate all the help I get. You can also [shoot me an email](mailto:me@devinosor.io) if you have any questions on the application.
