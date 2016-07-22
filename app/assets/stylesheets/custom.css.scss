@@ -1,14 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$green: rgb(57,181,74);
+
+
 .navbar {
   a {
-    font-size: 22px;
+    font-size: 18px;
     text-decoration: none;
   }
-  height: 70px;
-  margin-bottom: 0px;
+  height: 65px;
 	background-color: white;
+  margin-bottom: 0px;
 }
 
 .pages {
@@ -31,28 +34,69 @@
 }
 
   .brand {
-    margin-top: 8px;
+    margin-top: 10px;
+    > img {
+    height: 50px;
+    width: auto;
+   }
   }
 
-.jumbotron {
-  h1 {
-    color: white;
-    text-align: center;
-    font-size: 60px;
-  }
-  p {
-    color: white;
-    text-align: center;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  background-image: url("background.jpg");
+.jumbotron-fluid {
+  background-color: $green;
+
+}
+
+
+
+
+.jumbotron-pic {
+  background-image: url("jumbotron.png");
+  max-width: 1000px;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 800px;
+  min-height: 500px;
+
+  >a {
+      color: white;
+
+      &:active {
+        color: white;
+      }
+
+      &:link {
+        color: white;
+        text-decoration: none;
+
+        &:visited {
+        color: white;
+        text-decoration: none;
+        }
+      }
+
+       &:visited {
+        color: white;
+        text-decoration: none;
+        }
+
+      &:hover {
+        color: white;
+      }
+    }
+
+  .btn-primary {
+    margin-top: 300px;
+    margin-left: 125px;
+
+    background-color: $green;
+    &:hover {
+      background-color: $green;
+      border-color: white;
+    }
+    border-color: white;
+    border-width: 3px;
 }
+}
+
 
 
 .tagline {
