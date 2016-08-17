@@ -4,7 +4,7 @@ Green Service Invoice is a web application I developed for service technicians t
 
 ## Inspiration
 
-I was inspired by apple and the way that they send their customers receipts through email, only printing the receipt as a second option when a customer doesn't have an email (It's 2016 by the way, there is absolutely no reason at all to not have an email!). This reduces paper waste and helps companies or individuals do their part in helping the environment. Before I became a developer I worked as an appliance technician and I was suprised at the amount of companies that still used paper invoices, and the majority of these invoices were carbon copy invoices meaning they had multiple copies under each invoice leading to even more paper waste. A great deal of service companies are small businesses that either do not see the value of online invoices or cannot afford to develop a proper invoice application. The goal of this application is to help these companies modernize their invoice process.
+I was inspired by apple's method of sending receipts through email, only printing the receipt as a second option when a customer doesn't have an email (It's 2016 by the way, there is absolutely no reason at all to not have an email!). This reduces paper waste and helps companies or individuals do their part in helping the environment. Before I became a developer I worked as an appliance technician and I was suprised at the amount of companies that still used paper invoices, and the majority of these invoices were carbon copy invoices meaning they had multiple copies under each invoice leading to even more paper waste. A great deal of service companies are small businesses that either do not see the value of online invoices or cannot afford to develop a proper invoice application. The goal of this application is to help these companies modernize their invoice process.
 
 ## How To Use
 
@@ -38,7 +38,7 @@ Coming Soon, I promise!
 
 ![Database Schema](http://i.imgur.com/S216dRd.png)
 
-I have the database schema attached for any folks that are interested. If you completely disapprove of the schema and have any suggestions for improvement, please don't hesitate to send me an email or message! :)
+I have the database schema attached for any folks that are interested.
 
 
 ## Contributing
